@@ -1,0 +1,5 @@
+<ul class="index">
+  {{#each .}}
+  <li><time datetime="{{isoDate published}}">{{shortDate published}}</time>  <a href="{{name}}/">{{title}}</a></li>
+  {{/each}}
+</ul>

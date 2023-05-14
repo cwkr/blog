@@ -1,0 +1,15 @@
+/*! Fira Mono v3.206 | SIL Open Font License | github.com/bBoxType/FiraSans */
+
+@font-face {
+    font-family: 'Fira Mono';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/FiraMono-Regular.woff?v=3.206') format('woff');
+}
+
+@font-face {
+    font-family: 'Fira Mono';
+    font-weight: bold;
+    font-style: normal;
+    src: url('../fonts/FiraMono-Bold.woff?v=3.206') format('woff');
+}

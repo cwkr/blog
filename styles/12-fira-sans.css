@@ -1,0 +1,29 @@
+/*! Fira Sans v4.301 | SIL Open Font License | github.com/bBoxType/FiraSans */
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/FiraSans-Regular.woff?v=4.301') format('woff');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-weight: normal;
+    font-style: italic;
+    src: url('../fonts/FiraSans-Italic.woff?v=4.301') format('woff');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-weight: bold;
+    font-style: normal;
+    src: url('../fonts/FiraSans-Bold.woff?v=4.301') format('woff');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-weight: bold;
+    font-style: italic;
+    src: url('../fonts/FiraSans-BoldItalic.woff?v=4.301') format('woff');
+}

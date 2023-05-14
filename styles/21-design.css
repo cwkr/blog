@@ -1,0 +1,123 @@
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-fg-color);
+  font-family: 'Fira Sans', sans-serif;
+  font-variant: tabular-nums slashed-zero;
+  font-size: 1em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: var(--main-fg-color);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--light-fg-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  margin: 1em 0;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 0.75em;
+}
+
+pre,
+code {
+  font-family: 'Fira Mono', monospace;
+}
+
+pre {
+  padding: 1em;
+  background-color: var(--code-bg-color);
+}
+
+footer {
+  padding: 1em;
+  color: var(--light-fg-color);
+  text-align: center;
+  font-size: 0.75em;
+}
+
+footer a {
+  color: var(--light-fg-color);
+}
+
+footer a:hover {
+  color: var(--main-fg-color);
+}
+
+main {
+  padding: 1em;
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+main :first-child {
+  margin-top: 1em;
+}
+
+header {
+  padding: 1em;
+  background-color: var(--inverse-bg-color);
+  color: var(--inverse-fg-color);
+}
+
+header a {
+  text-decoration: none;
+  color: var(---inverse-fg-color);
+}
+
+header h1 {
+  margin: 1em auto 0 auto;
+  max-width: 960px;
+}
+
+header h1 + p {
+  margin: 1em auto 2em auto;
+  max-width: 960px;
+}
+
+time {
+  color: var(--light-fg-color);
+}
+
+ul.index {
+  padding: 0;
+  font-size: 1.25em;
+}
+
+ul.index li {
+  list-style: none;
+}
