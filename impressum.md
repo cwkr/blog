@@ -26,8 +26,8 @@ Soweit die Inhalte auf dieser Seite nicht von mir erstellt wurden, werden die Ur
 
 ## Datenschutzerklärung
 
-Dieses Blog wird durch einen Webserver bereitgestellt der Zugriffe auf die einzelnen Seiten protokolliert. Erfasst werden dabei Datum, Uhrzeit, die aufgerufene URI sowie die IP-Adresse des Aufrufenden. Diese Informationen dienen der Fehlersuche im Krisenfall. Da keine Zuordnung durch Benutzerkonten, Tracking-Cookies oder ähnliches möglich ist betrachte ich die Daten nicht als personenbezogen.
+Dieses Blog wird durch den Dienst [GitHub Pages](https://pages.github.com/) bereitgestellt. Der Dienstanbieter (GitHub Inc.) protokolliert die IP-Adresse, Datum und Uhrzeit jedes Aufrufs aus Sicherheitsgründen und zur Fehleranalyse. Ich habe auf diese Daten keinen direkten Zugriff. Serverstandort ist USA.
 
-Es werden keine Cookies oder andere Mittel zur Nachverfolgung des Benutzerverhaltens verwendet.
+[GitHub Datenschutzerklärung](https://docs.github.com/de/site-policy/privacy-policies/github-privacy-statement)
 
 Dieses Blog verwendet keine Social-Media- oder Analytics-Plugins.
