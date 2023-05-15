@@ -56,13 +56,13 @@ const parser = new Parser();
 const renderer = new CustomHtmlRenderer();
 const articles: Article[] = [];
 
-for await (const f of readDir('.')) {
+for await (const f of readDir('articles')) {
   if (f.isFile === true && f.name.endsWith('.md') === true) {
     const [published, name] = f.name.substring(0, f.name.length - 3).split('_', 2);
     if (published && name) {
       const ptime = new Date(published);
-      const text = await readTextFile(f.name);
-      const {mtime} = await stat(f.name);
+      const text = await readTextFile(`articles/${f.name}`);
+      const {mtime} = await stat(`articles/${f.name}`);
       const body = parser.parse(text);
       const title = getTitle(body);
       const article = new Article(name, title, body, ptime, mtime ?? ptime);

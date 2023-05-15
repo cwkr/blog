@@ -6,6 +6,6 @@ Als Softwareentwickler stellt sich mir die Frage, ob ich eine wartungsarme Lösu
 
 ## Erste Version
 
-Ich habe jetzt ein Script in [TypeScript](https://www.typescriptlang.org/) geschrieben, das [CommonMark.js](https://github.com/commonmark/commonmark.js/) und noch ein paar weitere JavaScript-Bibliotheken nutzt um das Blog aus den Markdown-Dateien generiert. Ausgeführt wird das Script mit [Deno](https://deno.land/) innerhalb eines GitHub Actions Workflows bei jedem Push auf den Main-Branch. Der Workflow veröffentlicht das Blog als finalen Schritt auf GitHub Pages.
+Ich habe jetzt ein Script in [TypeScript](https://www.typescriptlang.org/) geschrieben, das [CommonMark.js](https://github.com/commonmark/commonmark.js/) und noch ein paar weitere JavaScript-Bibliotheken nutzt um das Blog aus den Markdown-Dateien zu generieren. Ausgeführt wird das Script mit [Deno](https://deno.land/) innerhalb eines GitHub Actions Workflows bei jedem Push auf den Main-Branch. Der Workflow veröffentlicht das Blog als finalen Schritt auf GitHub Pages.
 
 Das Ergebnis eines Tages an Entwicklungsaufwand ist nun in [github.com/cwkr/blog](https://github.com/cwkr/blog) zu finden und dieser Artikel hier ist der erste meines neuen Blogs: [blog.cwkr.de](https://blog.cwkr.de/).
