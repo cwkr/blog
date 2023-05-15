@@ -4,7 +4,7 @@ import Handlebars from 'handlebars';
 // @deno-types="@types/csso"
 import { minify } from 'csso';
 import { CustomHtmlRenderer } from './custom-html-renderer.ts';
-
+const { stat, mkdir, readDir, readTextFile, writeTextFile, copyFile } = Deno;
 
 function plainText(node: Node): string {
   let text = '';
@@ -43,31 +43,30 @@ Handlebars.registerHelper('fullDate', (date: Date) => date.toLocaleDateString('d
 Handlebars.registerHelper('isoDate', (date: Date) => date.toISOString());
 Handlebars.registerHelper('shortDate', (date: Date) => date.toLocaleDateString('de-DE', { dateStyle: 'medium' }));
 
-const articleTemplate = Handlebars.compile(await Deno.readTextFile('templates/article.hbs'));
-const pageTemplate = Handlebars.compile(await Deno.readTextFile('templates/page.hbs'));
+const articleTemplate = Handlebars.compile(await readTextFile('templates/article.hbs'));
+const pageTemplate = Handlebars.compile(await readTextFile('templates/page.hbs'));
 
 async function writePage(src: string, dst: string, title?: string): Promise<void> {
-  const text = await Deno.readTextFile(src);
+  const text = await readTextFile(src);
   const htmlBody = renderer.render(parser.parse(text));
-  await Deno.writeTextFile(dst, pageTemplate({htmlBody, title}));
+  await writeTextFile(dst, pageTemplate({htmlBody, title}));
 }
 
 const parser = new Parser();
 const renderer = new CustomHtmlRenderer();
 const articles: Article[] = [];
 
-for await (const f of Deno.readDir('.')) {
+for await (const f of readDir('.')) {
   if (f.isFile === true && f.name.endsWith('.md') === true) {
     const [published, name] = f.name.substring(0, f.name.length - 3).split('_', 2);
     if (published && name) {
       const ptime = new Date(published);
-      const text = await Deno.readTextFile(f.name);
-      const {mtime} = await Deno.stat(f.name);
+      const text = await readTextFile(f.name);
+      const {mtime} = await stat(f.name);
       const body = parser.parse(text);
       const title = getTitle(body);
       const article = new Article(name, title, body, ptime, mtime ?? ptime);
       articles.push(article);
-      //console.log(article);
     }
   }
 }
@@ -77,36 +76,36 @@ articles.sort((a, b) => b.published.getTime() - a.published.getTime());
 
 for (const a of articles) {
   const targetDir = `public/${a.name}`;
-  await Deno.mkdir(targetDir, { recursive: true, mode: 0o755 });
+  await mkdir(targetDir, { recursive: true, mode: 0o755 });
   const htmlBody = renderer.render(a.body);
-  await Deno.writeTextFile(`${targetDir}/index.html`, articleTemplate({htmlBody, ...a}));
+  await writeTextFile(`${targetDir}/index.html`, articleTemplate({htmlBody, ...a}));
 }
 
 const cssFiles: string[] = [];
 const styles: string[] = [];
 
-for await (const f of Deno.readDir('styles')) {
+for await (const f of readDir('styles')) {
   if (f.isFile === true && f.name.endsWith('.css') === true) {
     cssFiles.push(f.name);
   }
 }
 cssFiles.sort();
 for (const filename of cssFiles) {
-  styles.push(await Deno.readTextFile(`styles/${filename}`));
+  styles.push(await readTextFile(`styles/${filename}`));
 }
 
-await Deno.mkdir('public/fonts', { recursive: true, mode: 0o755 });
-for await (const f of Deno.readDir('fonts')) {
+await mkdir('public/fonts', { recursive: true, mode: 0o755 });
+for await (const f of readDir('fonts')) {
   if (f.isFile === true && f.name.endsWith('.woff') === true) {
-    await Deno.copyFile(`fonts/${f.name}`, `public/fonts/${f.name}`);
+    await copyFile(`fonts/${f.name}`, `public/fonts/${f.name}`);
   }
 }
-await Deno.mkdir('public/styles', { recursive: true, mode: 0o755 });
-await Deno.writeTextFile(`public/styles/bundle.min.css`, minify(styles.join('\n'), {comments: 'exclamation'}).css);
+await mkdir('public/styles', { recursive: true, mode: 0o755 });
+await writeTextFile(`public/styles/bundle.min.css`, minify(styles.join('\n'), {comments: 'exclamation'}).css);
 
-await Deno.copyFile('favicon.ico', 'public/favicon.ico');
+await copyFile('favicon.ico', 'public/favicon.ico');
 
 await writePage('impressum.md', 'public/impressum.html', 'Impressum und Datenschutz');
 
-const htmlBody = Handlebars.compile(await Deno.readTextFile('templates/index.hbs'))(articles);
-await Deno.writeTextFile('public/index.html', pageTemplate({htmlBody}));
+const htmlBody = Handlebars.compile(await readTextFile('templates/index.hbs'))(articles);
+await writeTextFile('public/index.html', pageTemplate({htmlBody}));
