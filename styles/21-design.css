@@ -84,10 +84,6 @@ main {
   max-width: 960px;
 }
 
-main :first-child {
-  margin-top: 1em;
-}
-
 header {
   padding: 1em;
   background-color: var(--inverse-bg-color);
@@ -113,6 +109,10 @@ time {
   color: var(--light-fg-color);
 }
 
+img {
+  max-width: 100%;
+}
+
 ul.index {
   padding: 0;
   font-size: 1.25em;
@@ -121,4 +121,8 @@ ul.index {
 ul.index li {
   list-style: none;
   color: var(--light-fg-color);
+}
+
+.published {
+  margin-top: 1em;
 }

@@ -13,13 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-deno-${{ hashFiles('**/*') }}
-          restore-keys: ${{ runner.os }}-deno-
-          path: |
-            /opt/hostedtoolcache/deno/
-            /home/runner/.cache/deno/
       - uses: denoland/setup-deno@v1
         with:
           deno-version: "~1.33.3"

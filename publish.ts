@@ -29,6 +29,21 @@ function getTitle(root: Node): string {
   return '';
 }
 
+function getImageFilenames(root: Node): string[] {
+  const imageFilenames: string[] = [];
+  const walker = root.walker();
+  let event;
+  while ((event = walker.next())) {
+    if (event.entering === true && event.node.type === 'image') {
+      const src = event.node.destination;
+      if (src && !(src.startsWith('http://') || src.startsWith('https://'))) {
+        imageFilenames.push(src);
+      }
+    }
+  }
+  return imageFilenames;
+}
+
 class Article {
   constructor(public name: string,
               public title: string,
@@ -80,8 +95,20 @@ for (const a of articles) {
   const targetDir = `public/${a.name}`;
   await mkdir(targetDir, { recursive: true, mode: 0o755 });
   const htmlBody = renderer.render(a.body);
+  console.log(`${targetDir}/index.html`);
   await writeTextFile(`${targetDir}/index.html`, articleTemplate({htmlBody, ...a}));
+  for (const img of getImageFilenames(a.body)) {
+    if (img.indexOf('/') > -1) {
+      const path = img.substring(0, img.lastIndexOf('/'));
+      console.log(`public/${a.name}/${path}`);
+      await mkdir(`public/${a.name}/${path}`, { recursive: true, mode: 0o755 });
+    }
+    console.log(`public/${a.name}/${img}`);
+    await copyFile(`articles/${img}`, `public/${a.name}/${img}`);
+  }
 }
+
+// ----- Fonts & Style Sheets -----
 
 const cssFiles: string[] = [];
 const styles: string[] = [];
@@ -99,14 +126,23 @@ for (const filename of cssFiles) {
 await mkdir('public/fonts', { recursive: true, mode: 0o755 });
 for await (const f of readDir('fonts')) {
   if (f.isFile === true && f.name.endsWith('.woff') === true) {
+    console.log(`public/fonts/${f.name}`);
     await copyFile(`fonts/${f.name}`, `public/fonts/${f.name}`);
   }
 }
+console.log('public/styles/bundle.min.css');
 await mkdir('public/styles', { recursive: true, mode: 0o755 });
-await writeTextFile(`public/styles/bundle.min.css`, minify(styles.join('\n'), {comments: 'exclamation'}).css);
+await writeTextFile('public/styles/bundle.min.css', minify(styles.join('\n'), {comments: 'exclamation'}).css);
 
+// ----- Images -----
+
+console.log('public/favicon.ico');
 await copyFile('favicon.ico', 'public/favicon.ico');
 
-await writePage('impressum.md', 'public/impressum.html', 'Impressum und Datenschutz');
+// ----- Pages -----
 
+console.log('public/impressum.html');
+await writePage('pages/impressum.md', 'public/impressum.html', 'Impressum und Datenschutz');
+
+console.log('public/index.html');
 await writeTextFile('public/index.html', indexTemplate({articles}));
