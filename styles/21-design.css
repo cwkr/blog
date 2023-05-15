@@ -104,7 +104,7 @@ header h1 {
   max-width: 960px;
 }
 
-header h1 + p {
+header h1 + div {
   margin: 1em auto 2em auto;
   max-width: 960px;
 }
@@ -120,4 +120,5 @@ ul.index {
 
 ul.index li {
   list-style: none;
+  color: var(--light-fg-color);
 }

@@ -40,11 +40,13 @@ class Article {
 }
 
 Handlebars.registerHelper('fullDate', (date: Date) => date.toLocaleDateString('de-DE', { dateStyle: 'full' }));
-Handlebars.registerHelper('isoDate', (date: Date) => date.toISOString());
+Handlebars.registerHelper('isoDate', (date: Date) => date.toISOString().split('T')[0]);
 Handlebars.registerHelper('shortDate', (date: Date) => date.toLocaleDateString('de-DE', { dateStyle: 'medium' }));
+Handlebars.registerPartial('layout', Handlebars.compile(await readTextFile('templates/_layout.hbs')))
 
 const articleTemplate = Handlebars.compile(await readTextFile('templates/article.hbs'));
 const pageTemplate = Handlebars.compile(await readTextFile('templates/page.hbs'));
+const indexTemplate = Handlebars.compile(await readTextFile('templates/index.hbs'));
 
 async function writePage(src: string, dst: string, title?: string): Promise<void> {
   const text = await readTextFile(src);
@@ -107,5 +109,4 @@ await copyFile('favicon.ico', 'public/favicon.ico');
 
 await writePage('impressum.md', 'public/impressum.html', 'Impressum und Datenschutz');
 
-const htmlBody = Handlebars.compile(await readTextFile('templates/index.hbs'))(articles);
-await writeTextFile('public/index.html', pageTemplate({htmlBody}));
+await writeTextFile('public/index.html', indexTemplate({articles}));

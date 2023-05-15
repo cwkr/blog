@@ -1,5 +1,9 @@
+{{#> layout }}
 <ul class="index">
-  {{#each .}}
-  <li><time datetime="{{isoDate published}}">{{shortDate published}}</time>  <a href="{{name}}/">{{title}}</a></li>
+  {{#each articles}}
+  <li>
+    <time datetime="{{isoDate published}}">{{isoDate published}}</time> &mdash; <a href="{{name}}/">{{title}}</a>
+  </li>
   {{/each}}
 </ul>
+{{/layout}}
