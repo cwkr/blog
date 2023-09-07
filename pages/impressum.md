@@ -4,7 +4,11 @@
 
 Es handelt sich bei dieser Webpräsenz um ein privates Blog weshalb nach § 5 Abs. 1 TMG die Angabe einer ladungsfähigen Anschrift nicht erforderlich ist. Ich versichere, dass die veröffentlichten Inhalte ausschließlich privaten Zwecken dienen und keinerlei Einnahmen durch Werbung, Affiliate-Links oder ähnliches generiert werden.
 
-E-Mail: [info@cwkr.de](mailto:info@cwkr.de)
+Kontakt: [info@cwkr.de](mailto:info@cwkr.de)
+
+### Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+
+Christian Winkler
 
 ### Haftung für Inhalte
 

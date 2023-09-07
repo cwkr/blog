@@ -7,6 +7,7 @@
       "commonmark@0.30.0": "commonmark@0.30.0",
       "csso@5.0.5": "csso@5.0.5",
       "handlebars@4.7.7": "handlebars@4.7.7",
+      "handlebars@4.7.8": "handlebars@4.7.8",
       "highlight.js@11.7.0": "highlight.js@11.7.0"
     },
     "packages": {
@@ -48,6 +49,16 @@
       },
       "handlebars@4.7.7": {
         "integrity": "sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==",
+        "dependencies": {
+          "minimist": "minimist@1.2.8",
+          "neo-async": "neo-async@2.6.2",
+          "source-map": "source-map@0.6.1",
+          "uglify-js": "uglify-js@3.17.4",
+          "wordwrap": "wordwrap@1.0.0"
+        }
+      },
+      "handlebars@4.7.8": {
+        "integrity": "sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ==",
         "dependencies": {
           "minimist": "minimist@1.2.8",
           "neo-async": "neo-async@2.6.2",

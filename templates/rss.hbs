@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Christians Blog</title>
+    <link>https://blog.cwkr.de</link>
+    <description>Über Softwareentwicklung, Filme und was mich sonst noch so bewegt</description>
+    <language>de-de</language>
+    <copyright>Christian Winkler</copyright>
+    {{#each articles}}
+    <item>
+      <title>{{title}}</title>
+      <link>https://blog.cwkr.de/{{name}}/</link>
+      <guid>https://blog.cwkr.de/{{name}}/</guid>
+      <pubDate>{{rssDate published}}</pubDate>
+    </item>
+    {{/each}}
+  </channel>
+</rss>

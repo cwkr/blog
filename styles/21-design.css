@@ -88,11 +88,12 @@ header {
   padding: 1em;
   background-color: var(--inverse-bg-color);
   color: var(--inverse-fg-color);
+  text-align: center;
 }
 
 header a {
   text-decoration: none;
-  color: var(---inverse-fg-color);
+  color: var(--inverse-fg-color);
 }
 
 header h1 {
@@ -100,9 +101,17 @@ header h1 {
   max-width: 960px;
 }
 
-header h1 + div {
+header h1 + div, header nav {
   margin: 1em auto 2em auto;
   max-width: 960px;
+}
+
+header svg {
+  fill: var(--inverse-fg-color);
+}
+
+header svg:hover {
+  fill: var(--light-fg-color);
 }
 
 time {

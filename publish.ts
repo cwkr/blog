@@ -56,12 +56,14 @@ class Article {
 
 Handlebars.registerHelper('fullDate', (date: Date) => date.toLocaleDateString('de-DE', { dateStyle: 'full' }));
 Handlebars.registerHelper('isoDate', (date: Date) => date.toISOString().split('T')[0]);
+Handlebars.registerHelper('rssDate', (date: Date) => date.toUTCString());
 Handlebars.registerHelper('shortDate', (date: Date) => date.toLocaleDateString('de-DE', { dateStyle: 'medium' }));
 Handlebars.registerPartial('layout', Handlebars.compile(await readTextFile('templates/_layout.hbs')))
 
 const articleTemplate = Handlebars.compile(await readTextFile('templates/article.hbs'));
 const pageTemplate = Handlebars.compile(await readTextFile('templates/page.hbs'));
 const indexTemplate = Handlebars.compile(await readTextFile('templates/index.hbs'));
+const rssTemplate = Handlebars.compile(await readTextFile('templates/rss.hbs'));
 
 async function writePage(src: string, dst: string, title?: string): Promise<void> {
   const text = await readTextFile(src);
@@ -138,6 +140,11 @@ await writeTextFile('public/styles/bundle.min.css', minify(styles.join('\n'), {c
 
 console.log('public/favicon.ico');
 await copyFile('favicon.ico', 'public/favicon.ico');
+
+// ----- RSS -----
+
+console.log('public/rss.xml');
+await writeTextFile('public/rss.xml', rssTemplate({articles}));
 
 // ----- Pages -----
 
